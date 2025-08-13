@@ -427,3 +427,45 @@ body {
         padding: 40px 0 30px;
     }
 }
+
+/* Particle Animation Styles */
+.particle {
+    position: absolute;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.particle.energy {
+    background: radial-gradient(circle, rgba(180, 180, 180, 0.8) 0%, rgba(140, 140, 140, 0.4) 50%, transparent 100%);
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(160, 160, 160, 0.6);
+}
+
+.particle.spark {
+    background: radial-gradient(circle, rgba(220, 220, 220, 0.9) 0%, rgba(180, 180, 180, 0.5) 60%, transparent 100%);
+    border-radius: 50%;
+    box-shadow: 0 0 8px rgba(200, 200, 200, 0.8);
+}
+
+.particle.magic {
+    background: radial-gradient(circle, rgba(160, 160, 160, 0.8) 0%, rgba(120, 120, 120, 0.4) 50%, transparent 100%);
+    border-radius: 50%;
+    box-shadow: 0 0 12px rgba(140, 140, 140, 0.6);
+}
+
+.particle.tech {
+    background: rgba(170, 170, 170, 0.7);
+    clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+    box-shadow: 0 0 8px rgba(150, 150, 150, 0.8);
+}
+
+.particle.geometric {
+    background: rgba(190, 190, 190, 0.6);
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+    box-shadow: 0 0 6px rgba(170, 170, 170, 0.7);
+}
+
+.particle.trail {
+    background: linear-gradient(45deg, rgba(150, 150, 150, 0.8) 0%, transparent 100%);
+    border-radius: 2px;
+}
