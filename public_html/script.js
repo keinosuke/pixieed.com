@@ -423,7 +423,16 @@ const taglines = [
     'Spark. Grow. Exceed.',
     'Small ideas, big impact',
     'Where ideas take flight',
-    'Empower every moment'
+    'Empower every moment',
+    'Magic Beyond Limits',
+    'Seeds of Ideas, Speed to Success',
+    'Where Magic Meets Momentum',
+    'Growing Ideas, Exceeding Expectations',
+    'From Tiny Seeds to Extraordinary Heights',
+    'Fast, Creative, Beyond Boundaries',
+    'Whispers of Magic, Waves of Change',
+    'Plant the Spark, Watch it Soar',
+    'Light as a Pixie, Bold as a Dream'
 ];
 
 // ランダムタグライン表示

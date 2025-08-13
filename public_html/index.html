@@ -4,28 +4,98 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pixieed - ピクシード株式会社</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style-horizontal.css">
 </head>
 <body>
     <div class="background-animation" id="backgroundAnimation"></div>
-    <div class="brand-container">
-        <div class="logo-container">
-            <svg class="logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                    <style>
-                        .st0 {
-                            fill: #231815;
-                        }
-                    </style>
-                </defs>
-                <path class="st0" d="M37,2.1c0,16.3,0,33,.8,49.2l-10.6,16.3v-.4c-.8-2-1.2-4.9-1.6-7.3-2.4-12.2-4.5-24.4-6.9-36.2L36.6,0h.4v2h0Z"/>
-                <polygon class="st0" points="-.1 72.9 2 55.4 23.1 61.9 24.8 69.2 -.1 72.9"/>
-                <path class="st0" d="M32.1,72.9l16.3-10.6,51.7.8-24,17.9c-11.4-2-22.8-4.1-34.2-6.1-11.4-2-6.5-1.2-9.8-2h0Z"/>
-                <polygon class="st0" points="37.8 76.6 43.9 97.3 26.8 99.4 30.5 74.9 37.8 76.6"/>
-            </svg>
+    
+    <!-- Header with Horizontal Logo -->
+    <header class="main-header">
+        <div class="logo-container-horizontal">
+            <img src="logo_horizonal.svg" alt="Pixieed" class="horizontal-logo">
         </div>
-        <div class="tagline" id="tagline"></div>
-    </div>
+        <div class="header-tagline">
+            <div class="tagline" id="tagline"></div>
+        </div>
+    </header>
+
+    <main class="content-horizontal">
+
+        <!-- Mission Statement -->
+        <section class="hero-mission">
+            <div class="mission-container">
+                <p class="mission-statement-large">To transform everyday challenges into joyful possibilities through technology that amplifies human potential.</p>
+            </div>
+        </section>
+
+        <!-- Three Column Layout -->
+        <div class="three-columns">
+            
+            <!-- Services Column -->
+            <div class="column services-column">
+                <h2 class="column-title">What We Do</h2>
+                <div class="services-list-horizontal">
+                    <div class="service-item-h">Custom System Development</div>
+                    <div class="service-item-h">AI Integration Solutions</div>
+                    <div class="service-item-h">Legacy System Modernization</div>
+                    <div class="service-item-h">Process Automation</div>
+                    <div class="service-item-h">Digital Transformation Consulting</div>
+                </div>
+            </div>
+
+            <!-- Leadership Column -->
+            <div class="column leadership-column">
+                <h2 class="column-title">Leadership</h2>
+                <div class="profile-info-h">
+                    <span class="profile-role-h">Technical Director / Founder</span>
+                    <h3 class="profile-name-h">Keinosuke Saito</h3>
+                    <p class="profile-bio-h">Born in Sendai, Miyagi. Started programming as a student, creating Windows applications. Over 20+ years of experience from web development team leader at design companies to IT development manager at listed companies, freelance engineer, and entrepreneur founding multiple companies including SIIK Inc. (2021) and Pixieed Inc. (2025).</p>
+                    
+                    <div class="skills-list-h">
+                        <span class="skill-tag">Web Development</span>
+                        <span class="skill-tag">System Architecture</span>
+                        <span class="skill-tag">Team Management</span>
+                        <span class="skill-tag">E-commerce Solutions</span>
+                        <span class="skill-tag">Enterprise Systems</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Company Info Column -->
+            <div class="column company-column">
+                <h2 class="column-title">Company Overview</h2>
+                <div class="company-details">
+                    <div class="detail-group">
+                        <span class="detail-label">Company</span>
+                        <span class="detail-value">Pixieed Inc.</span>
+                    </div>
+                    <div class="detail-group">
+                        <span class="detail-label">Established</span>
+                        <span class="detail-value">August 2025</span>
+                    </div>
+                    <div class="detail-group">
+                        <span class="detail-label">Address</span>
+                        <span class="detail-value">4F-A, Sennan Building, 2-11-19 Chuo, Aoba-ku, Sendai-shi, Miyagi 980-0021, Japan</span>
+                    </div>
+                    <div class="detail-group">
+                        <span class="detail-label">Business</span>
+                        <span class="detail-value">Software Development<br>& Technology Consulting</span>
+                    </div>
+
+                </div>
+            </div>
+            
+        </div>
+
+        <!-- Footer -->
+        <footer class="horizontal-footer">
+            <cite class="footer-attribution">Pixieed Inc.</cite>
+        </footer>
+
+    </main>
     <script src="script.js"></script>
 </body>
 </html>
