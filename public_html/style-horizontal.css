@@ -152,6 +152,20 @@ body {
     gap: 10px;
 }
 
+.profile-image-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 15px;
+}
+
+.profile-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid rgba(26, 26, 26, 0.1);
+}
+
 .profile-role-h {
     font-size: 11px;
     font-weight: 600;
@@ -314,6 +328,7 @@ body {
 
     .mission-statement-large {
         font-size: clamp(20px, 5vw, 28px);
+        line-height: 1.5;
     }
 
     .three-columns {
@@ -343,6 +358,11 @@ body {
 
     .profile-bio-h {
         font-size: 13px;
+    }
+
+    .profile-image {
+        width: 70px;
+        height: 70px;
     }
 
     .skills-list-h {
@@ -380,6 +400,7 @@ body {
 
     .mission-statement-large {
         font-size: clamp(18px, 6vw, 24px);
+        line-height: 1.6;
     }
 
     .three-columns {
@@ -407,6 +428,11 @@ body {
 
     .profile-bio-h {
         font-size: 12px;
+    }
+
+    .profile-image {
+        width: 60px;
+        height: 60px;
     }
 
     .skill-tag {
