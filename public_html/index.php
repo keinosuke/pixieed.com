@@ -1,8 +1,9 @@
 <?php
 // 言語判定とページ表示
-function detectLanguage() {
+function detectLanguage()
+{
     $lang = 'ja'; // デフォルトは日本語
-    
+
     // 特定IPアドレスをチェック
     $english_ips = [
         // 開発・テスト用IPアドレス（例）
@@ -32,9 +33,9 @@ function detectLanguage() {
         '119.106.110.133',   // shioya
         '106.146.5.144',     // sugawara
     ];
-    
+
     $client_ip = getClientIP();
-    
+
     // 特定IPの場合は英語
     if (in_array($client_ip, $english_ips)) {
         $lang = 'en';
@@ -43,12 +44,13 @@ function detectLanguage() {
     else if (isEnglishBrowser()) {
         $lang = 'en';
     }
-    
+
     return $lang;
 }
 
 // クライアントIPアドレスを取得
-function getClientIP() {
+function getClientIP()
+{
     if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
         return $_SERVER['HTTP_CLIENT_IP'];
     } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
@@ -65,18 +67,19 @@ function getClientIP() {
 }
 
 // ブラウザ言語が英語かチェック
-function isEnglishBrowser() {
+function isEnglishBrowser()
+{
     if (!isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
         return false;
     }
-    
+
     $accept_language = $_SERVER['HTTP_ACCEPT_LANGUAGE'];
-    
+
     // Accept-Languageヘッダーをパース
     $languages = [];
     if (preg_match_all('/([a-z]{1,8}(?:-[a-z]{1,8})?)(?:;q=([0-9.]+))?/i', $accept_language, $matches)) {
         $languages = array_combine($matches[1], $matches[2]);
-        
+
         // qの値がない場合は1.0として扱う
         foreach ($languages as $lang => $q) {
             if ($q === '') {
@@ -85,11 +88,11 @@ function isEnglishBrowser() {
                 $languages[$lang] = floatval($q);
             }
         }
-        
+
         // qの値でソート（降順）
         arsort($languages);
     }
-    
+
     // 最優先言語が英語系かチェック
     foreach ($languages as $lang => $q) {
         $lang_code = strtolower(substr($lang, 0, 2));
@@ -99,17 +102,24 @@ function isEnglishBrowser() {
         // 最初の言語のみチェック（最優先）
         break;
     }
-    
+
     return false;
 }
 
 // 言語を判定
 $lang = detectLanguage();
-
 // 言語に応じてコンテンツを出力
 $isEnglish = ($lang === 'en');
-?><!DOCTYPE html>
+
+// キャッシュバスター - ファイル更新時刻ベース
+function getAssetVersion($file) {
+    $filepath = __DIR__ . '/' . $file;
+    return file_exists($filepath) ? filemtime($filepath) : time();
+}
+?>
+<!DOCTYPE html>
 <html lang="<?php echo $isEnglish ? 'en' : 'ja'; ?>">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -118,11 +128,12 @@ $isEnglish = ($lang === 'en');
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/style.min.css">
+    <link rel="stylesheet" href="assets/css/style.min.css?v=<?php echo getAssetVersion('assets/css/style.min.css'); ?>">
 </head>
+
 <body>
     <div class="background-animation" id="backgroundAnimation"></div>
-    
+
     <!-- Header with Horizontal Logo -->
     <header class="main-header">
         <div class="logo-container-horizontal">
@@ -189,7 +200,7 @@ $isEnglish = ($lang === 'en');
                             宮城県仙台市生まれ。学生時代からプログラミングを始め、Windowsアプリを開発。上場企業でのIT管理職やWindowsアプリを開発。デザイン会社でのWebデベロッパーチームリーダーを経験した後、フリーランスエンジニアとして独立。その後、いくつかの会社を設立を経て2025年、ピクシード株式会社を設立。
                         <?php endif; ?>
                     </p>
-                    
+
                     <div class="skills-list-h">
                         <?php if ($isEnglish): ?>
                             <span class="skill-tag">Web Development</span>
@@ -223,10 +234,10 @@ $isEnglish = ($lang === 'en');
                         <span class="detail-value"><?php echo $isEnglish ? 'August 2025 (Founded in 2011)' : '2025年8月　(2011年創業)'; ?></span>
                     </div>
                     <?php if (!$isEnglish): ?>
-                    <div class="detail-group">
-                        <span class="detail-label">代表者</span>
-                        <span class="detail-value">代表取締役 齊藤京之介</span>
-                    </div>
+                        <div class="detail-group">
+                            <span class="detail-label">代表者</span>
+                            <span class="detail-value">代表取締役 齊藤京之介</span>
+                        </div>
                     <?php endif; ?>
                     <div class="detail-group">
                         <span class="detail-label"><?php echo $isEnglish ? 'Address' : '所在地'; ?></span>
@@ -260,6 +271,7 @@ $isEnglish = ($lang === 'en');
         </footer>
 
     </main>
-    <script src="assets/js/script.min.js"></script>
+    <script src="assets/js/script.min.js?v=<?php echo getAssetVersion('assets/js/script.min.js'); ?>"></script>
 </body>
+
 </html>
