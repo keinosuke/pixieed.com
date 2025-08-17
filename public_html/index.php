@@ -112,7 +112,8 @@ $lang = detectLanguage();
 $isEnglish = ($lang === 'en');
 
 // キャッシュバスター - ファイル更新時刻ベース
-function getAssetVersion($file) {
+function getAssetVersion($file)
+{
     $filepath = __DIR__ . '/' . $file;
     return file_exists($filepath) ? filemtime($filepath) : time();
 }
@@ -169,17 +170,17 @@ function getAssetVersion($file) {
                 <h2 class="column-title"><?php echo $isEnglish ? 'What We Do' : '私たちができること'; ?></h2>
                 <div class="services-list-horizontal">
                     <?php if ($isEnglish): ?>
-                        <div class="service-item-h">Custom System Development</div>
-                        <div class="service-item-h">AI Integration Solutions</div>
-                        <div class="service-item-h">Legacy System Modernization</div>
-                        <div class="service-item-h">Process Automation</div>
+                        <div class="service-item-h">Business Process Improvement</div>
                         <div class="service-item-h">Digital Transformation Consulting</div>
+                        <div class="service-item-h">AI-Powered Problem Solving</div>
+                        <div class="service-item-h">Legacy System Modernization</div>
+                        <div class="service-item-h">Custom Solution Development</div>
                     <?php else: ?>
-                        <div class="service-item-h">カスタムシステム開発</div>
-                        <div class="service-item-h">AI統合ソリューション</div>
-                        <div class="service-item-h">レガシーシステムの現代化</div>
-                        <div class="service-item-h">プロセス自動化</div>
+                        <div class="service-item-h">業務効率化・改善</div>
                         <div class="service-item-h">DXコンサルティング</div>
+                        <div class="service-item-h">AI活用による課題解決</div>
+                        <div class="service-item-h">レガシーシステムの現代化</div>
+                        <div class="service-item-h">オーダーメイドソリューション</div>
                     <?php endif; ?>
                 </div>
             </div>
