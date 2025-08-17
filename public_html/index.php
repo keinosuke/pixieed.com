@@ -175,7 +175,7 @@ $isEnglish = ($lang === 'en');
 
             <!-- Leadership Column -->
             <div class="column leadership-column">
-                <h2 class="column-title"><?php echo $isEnglish ? 'Leadership' : '代表者経歴'; ?></h2>
+                <h2 class="column-title"><?php echo $isEnglish ? 'CEO Profile' : '代表者経歴'; ?></h2>
                 <div class="profile-info-h">
                     <div class="profile-image-container">
                         <img src="assets/img/saito.jpg" alt="<?php echo $isEnglish ? 'Keinosuke Saito' : '齊藤 京之介'; ?>" class="profile-image">
@@ -220,7 +220,7 @@ $isEnglish = ($lang === 'en');
                     </div>
                     <div class="detail-group">
                         <span class="detail-label"><?php echo $isEnglish ? 'Established' : '設立'; ?></span>
-                        <span class="detail-value"><?php echo $isEnglish ? 'August 2025' : '2025年8月　(2011年創業)'; ?></span>
+                        <span class="detail-value"><?php echo $isEnglish ? 'August 2025 (Founded in 2011)' : '2025年8月　(2011年創業)'; ?></span>
                     </div>
                     <?php if (!$isEnglish): ?>
                     <div class="detail-group">
@@ -232,7 +232,7 @@ $isEnglish = ($lang === 'en');
                         <span class="detail-label"><?php echo $isEnglish ? 'Address' : '所在地'; ?></span>
                         <span class="detail-value">
                             <?php if ($isEnglish): ?>
-                                4F-A, Sennan Building, 2-11-19 Chuo, Aoba-ku, Sendai-shi, Miyagi 980-0021, Japan
+                                4F-A, Sennan Building, 11-19, Chuo 2-chome, Aoba-ku, Sendai-shi, Miyagi-ken, Japan
                             <?php else: ?>
                                 〒980-0021<br>宮城県仙台市青葉区中央2-11-19<br>仙南ビル4F-A
                             <?php endif; ?>
