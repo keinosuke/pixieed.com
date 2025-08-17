@@ -2,16 +2,23 @@ class AdvancedParticleSystem {
     constructor() {
         this.particles = [];
         this.container = document.getElementById('backgroundAnimation');
-        this.maxParticles = 150;
+        this.maxParticles = this.isMobile() ? 50 : 150;
         this.emitters = [];
         this.time = 0;
         this.init();
+        this.lastUpdateTime = 0;
+        this.targetFPS = this.isMobile() ? 30 : 60;
+        this.frameInterval = 1000 / this.targetFPS;
     }
 
     init() {
         this.setupEmitters();
         this.animate();
         this.startContinuousGeneration();
+    }
+
+    isMobile() {
+        return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768;
     }
 
     setupEmitters() {
@@ -42,7 +49,7 @@ class AdvancedParticleSystem {
                     this.generateWaveParticles();
                 }
                 scheduleWaveGeneration();
-            }, Math.random() * 200 + 100); // 100-300ms間隔
+            }, this.isMobile() ? Math.random() * 400 + 200 : Math.random() * 200 + 100); // モバイル: 200-600ms, デスクトップ: 100-300ms
         };
         scheduleWaveGeneration();
 
@@ -60,7 +67,7 @@ class AdvancedParticleSystem {
             setTimeout(() => {
                 this.createMagicEffect();
                 scheduleMagicEffect();
-            }, Math.random() * 5000 + 3000); // 3-8秒間隔
+            }, this.isMobile() ? Math.random() * 8000 + 5000 : Math.random() * 5000 + 3000); // モバイル: 5-13秒, デスクトップ: 3-8秒
         };
         setTimeout(scheduleMagicEffect, Math.random() * 3000); // 初回は0-3秒後
 
@@ -69,7 +76,7 @@ class AdvancedParticleSystem {
             setTimeout(() => {
                 this.createOrbitParticles();
                 scheduleOrbitParticles();
-            }, Math.random() * 3000 + 1500); // 1.5-4.5秒間隔
+            }, this.isMobile() ? Math.random() * 6000 + 3000 : Math.random() * 3000 + 1500); // モバイル: 3-9秒, デスクトップ: 1.5-4.5秒
         };
         setTimeout(scheduleOrbitParticles, Math.random() * 1500); // 初回は0-1.5秒後
     }
@@ -178,7 +185,8 @@ class AdvancedParticleSystem {
         const centerX = window.innerWidth / 2;
         const centerY = window.innerHeight / 2;
 
-        for (let i = 0; i < 30; i++) {
+        const burstCount = this.isMobile() ? 15 : 30;
+        for (let i = 0; i < burstCount; i++) {
             const angle = (360 / 30) * i;
             const angleRad = angle * Math.PI / 180;
             const distance = Math.random() * 100 + 50;
@@ -213,7 +221,8 @@ class AdvancedParticleSystem {
         const centerX = window.innerWidth / 2;
         const centerY = window.innerHeight / 2;
 
-        for (let i = 0; i < 12; i++) {
+        const magicCount = this.isMobile() ? 6 : 12;
+        for (let i = 0; i < magicCount; i++) {
             const angle = Math.random() * 360;
             const angleRad = angle * Math.PI / 180;
             const radius = Math.random() * 200 + 100;
@@ -248,7 +257,8 @@ class AdvancedParticleSystem {
         const centerX = window.innerWidth / 2;
         const centerY = window.innerHeight / 2;
 
-        for (let i = 0; i < 8; i++) {
+        const orbitCount = this.isMobile() ? 4 : 8;
+        for (let i = 0; i < orbitCount; i++) {
             const angle = (360 / 15) * i;
             const angleRad = angle * Math.PI / 180;
             const radius = 250;
@@ -347,13 +357,22 @@ class AdvancedParticleSystem {
             particle.life -= particle.decay;
             particle.opacity = Math.max(0, particle.life * 0.9);
 
-            // DOM更新
-            particle.element.style.left = particle.x + 'px';
-            particle.element.style.top = particle.y + 'px';
-            particle.element.style.width = particle.size + 'px';
-            particle.element.style.height = particle.size + 'px';
-            particle.element.style.opacity = particle.opacity;
-            particle.element.style.transform = `rotate(${particle.rotation}deg) scale(${pulse})`;
+            // DOM更新の最適化
+            if (this.isMobile()) {
+                // モバイルでは軽量な更新
+                particle.element.style.left = Math.round(particle.x) + 'px';
+                particle.element.style.top = Math.round(particle.y) + 'px';
+                particle.element.style.opacity = particle.opacity;
+                // 回転とスケールは省略
+            } else {
+                // デスクトップでは通常の更新
+                particle.element.style.left = particle.x + 'px';
+                particle.element.style.top = particle.y + 'px';
+                particle.element.style.width = particle.size + 'px';
+                particle.element.style.height = particle.size + 'px';
+                particle.element.style.opacity = particle.opacity;
+                particle.element.style.transform = `rotate(${particle.rotation}deg) scale(${pulse})`;
+            }
 
             // パーティクル削除と再生成
             if (particle.life <= 0) {
@@ -374,13 +393,17 @@ class AdvancedParticleSystem {
         }
     }
 
-    animate() {
-        this.updateParticles();
-        requestAnimationFrame(() => this.animate());
+    animate(currentTime = 0) {
+        if (currentTime - this.lastUpdateTime >= this.frameInterval) {
+            this.updateParticles();
+            this.lastUpdateTime = currentTime;
+        }
+        requestAnimationFrame((time) => this.animate(time));
     }
 
     addInteractiveBurst(x, y) {
-        for (let i = 0; i < 25; i++) {
+        const interactiveCount = this.isMobile() ? 10 : 25;
+        for (let i = 0; i < interactiveCount; i++) {
             const angle = Math.random() * 360;
             const angleRad = angle * Math.PI / 180;
             const speed = Math.random() * 8 + 2;

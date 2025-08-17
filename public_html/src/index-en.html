@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pixieed - ピクシード株式会社</title>
+    <meta name="format-detection" content="telephone=no, address=no, email=no">
+    <title>Pixieed Inc. - Technology that amplifies human potential</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style-horizontal.css">
+    <link rel="stylesheet" href="css/style.min.css">
 </head>
 <body>
     <div class="background-animation" id="backgroundAnimation"></div>
@@ -15,7 +16,7 @@
     <!-- Header with Horizontal Logo -->
     <header class="main-header">
         <div class="logo-container-horizontal">
-            <img src="logo_horizonal.svg" alt="Pixieed" class="horizontal-logo">
+            <img src="img/logo_horizonal.svg" alt="Pixieed" class="horizontal-logo">
         </div>
         <div class="header-tagline">
             <div class="tagline" id="tagline"></div>
@@ -27,7 +28,10 @@
         <!-- Mission Statement -->
         <section class="hero-mission">
             <div class="mission-container">
-                <p class="mission-statement-large">To transform everyday challenges into joyful possibilities through technology that amplifies human potential.</p>
+                <p class="mission-statement-large">
+                    <span class="mission-line-1">From tiny sparks to</span><span class="mission-line-2"> great transformations,</span><br class="mission-break-desktop">
+                    <span class="mission-line-3">technology that amplifies</span><span class="mission-line-4"> human potential.</span>
+                </p>
             </div>
         </section>
 
@@ -50,6 +54,9 @@
             <div class="column leadership-column">
                 <h2 class="column-title">Leadership</h2>
                 <div class="profile-info-h">
+                    <div class="profile-image-container">
+                        <img src="img/saito.jpg" alt="Keinosuke Saito" class="profile-image">
+                    </div>
                     <span class="profile-role-h">Technical Director / Founder</span>
                     <h3 class="profile-name-h">Keinosuke Saito</h3>
                     <p class="profile-bio-h">Born in Sendai, Miyagi. Started programming as a student, creating Windows applications. Over 20+ years of experience from web development team leader at design companies to IT development manager at listed companies, freelance engineer, and entrepreneur founding multiple companies including SIIK Inc. (2021) and Pixieed Inc. (2025).</p>
@@ -95,6 +102,6 @@
         </footer>
 
     </main>
-    <script src="script.js"></script>
+    <script src="js/script.min.js"></script>
 </body>
 </html>

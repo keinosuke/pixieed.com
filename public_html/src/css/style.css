@@ -98,6 +98,34 @@ body {
     letter-spacing: -0.5px;
 }
 
+/* モバイル向けミッション文の改行制御 */
+@media (max-width: 480px) {
+    .mission-line-1::after {
+        content: "\A";
+        white-space: pre;
+    }
+    
+    .mission-line-3::after {
+        content: "\A";
+        white-space: pre;
+    }
+    
+    .mission-break-desktop {
+        display: none;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+    .mission-line-2::after {
+        content: "\A";
+        white-space: pre;
+    }
+    
+    .mission-break-desktop {
+        display: none;
+    }
+}
+
 /* Three Column Layout */
 .three-columns {
     display: grid;
@@ -163,7 +191,6 @@ body {
     height: 80px;
     border-radius: 50%;
     object-fit: cover;
-    border: 2px solid rgba(26, 26, 26, 0.1);
 }
 
 .profile-role-h {
@@ -366,7 +393,7 @@ body {
     }
 
     .skills-list-h {
-        justify-content: center;
+        justify-content: flex-start;
     }
 
     .detail-value {
@@ -459,6 +486,21 @@ body {
     position: absolute;
     pointer-events: none;
     transition: opacity 0.3s ease;
+    will-change: transform, opacity;
+}
+
+/* モバイル向け最適化 */
+@media (max-width: 768px) {
+    .particle {
+        will-change: transform;
+        transition: none;
+    }
+    
+    .particle.energy,
+    .particle.spark,
+    .particle.magic {
+        box-shadow: none; /* モバイルではシャドウを削除 */
+    }
 }
 
 .particle.energy {
