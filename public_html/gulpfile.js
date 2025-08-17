@@ -11,34 +11,23 @@ const del = require('del');
 // パス設定
 const paths = {
   src: {
-    html: './src/*.html',
     css: './src/css/**/*.css',
     js: './src/js/**/*.js',
     img: './src/img/**/*'
   },
   dist: {
-    base: './dist',
-    css: './dist/css',
-    js: './dist/js',
-    img: './dist/img'
+    base: './assets',
+    css: './assets/css',
+    js: './assets/js',
+    img: './assets/img'
   }
 };
 
-// Clean task - dist フォルダを削除
+// Clean task - assets フォルダを削除
 function clean() {
   return del([paths.dist.base]);
 }
 
-// HTML task - HTMLファイルを最小化してdistにコピー
-function html() {
-  return gulp.src(paths.src.html)
-    .pipe(htmlmin({ 
-      collapseWhitespace: true, 
-      removeComments: true 
-    }))
-    .pipe(gulp.dest(paths.dist.base))
-    .pipe(browserSync.stream());
-}
 
 // CSS task - CSSファイルを最小化
 function css() {
@@ -87,12 +76,6 @@ function jsDev() {
     .pipe(browserSync.stream());
 }
 
-// Development用HTML task (最小化なし)
-function htmlDev() {
-  return gulp.src(paths.src.html)
-    .pipe(gulp.dest(paths.dist.base))
-    .pipe(browserSync.stream());
-}
 
 // Development用Images task (最適化なし)
 function imagesDev() {
@@ -114,19 +97,17 @@ function serve() {
 
 // Watch task - ファイル変更を監視
 function watch() {
-  gulp.watch(paths.src.html, htmlDev);
   gulp.watch(paths.src.css, cssDev);
   gulp.watch(paths.src.js, jsDev);
   gulp.watch(paths.src.img, imagesDev);
 }
 
 // タスクの組み合わせ定義
-const dev = gulp.series(clean, gulp.parallel(htmlDev, cssDev, jsDev, imagesDev), gulp.parallel(serve, watch));
-const build = gulp.series(clean, gulp.parallel(html, css, js, images));
+const dev = gulp.series(clean, gulp.parallel(cssDev, jsDev, imagesDev), gulp.parallel(serve, watch));
+const build = gulp.series(clean, gulp.parallel(css, js, images));
 
 // タスクのエクスポート
 exports.clean = clean;
-exports.html = html;
 exports.css = css;
 exports.js = js;
 exports.images = images;
